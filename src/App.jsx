@@ -28,8 +28,6 @@ const App = () => {
     return (
         <div className="calculator">
             <div className="display">
-                <span className="display-aux">Aux</span>
-                <br />
                 <span className="display-value">{displayValue}</span>
             </div>
             <div className="buttons">
