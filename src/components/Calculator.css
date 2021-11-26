@@ -1,0 +1,59 @@
+.calculator {
+    width: 14.2rem;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-image:url('./images/background.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.display{
+    background-color: black;
+    padding-top: 1rem;
+}
+
+.top-result {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.result {
+    font-size: 1.5rem;
+}
+
+.top-result, .result {
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+
+.buttons {
+    width: 14rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+button:hover {
+    background-color: rgb(82, 0, 0);
+    cursor: pointer;
+}
+
+button:active {
+    background-color: black;
+}
+
+.spaced {
+    width: 7rem;
+}
