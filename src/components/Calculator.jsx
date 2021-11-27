@@ -10,8 +10,6 @@ const Calculator = () => {
     const num = (e) => {
         let numButton = e.target.name
 
-        console.log(operator)
-
         if(result === 0 && operator === '') {
             setResult(numButton)
             setLog(numButton)
@@ -55,17 +53,16 @@ const Calculator = () => {
     const calculate = () => {
         if (operator === '+'){
             setResult(parseFloat(accumulator) + parseFloat(result))
-            setLog(accumulator + result)
-                
+            setLog(parseFloat(accumulator) + parseFloat(result))    
         } else if (operator === '-') {
             setResult(parseFloat(accumulator) - parseFloat(result))
-            setLog(accumulator - result)
+            setLog(parseFloat(accumulator) - parseFloat(result))
         } else if (operator === '*') {
             setResult(parseFloat(accumulator) * parseFloat(result))
-            setLog(accumulator * result)
+            setLog(parseFloat(accumulator) * parseFloat(result))
         } else if (operator === '/') {
             setResult(parseFloat(accumulator) / parseFloat(result))
-            setLog(accumulator / result)
+            setLog(parseFloat(accumulator) / parseFloat(result))
         }
     }
 
