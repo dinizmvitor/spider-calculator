@@ -12,7 +12,8 @@
     padding-top: 1rem;
 }
 
-.top-result {
+.log {
+    height: 1rem;
     margin-bottom: 0.5rem;
     font-size: 0.8rem;
 }
@@ -21,7 +22,7 @@
     font-size: 1.5rem;
 }
 
-.top-result, .result {
+.log, .result {
     display: flex;
     justify-content: right;
     align-items: flex-end;

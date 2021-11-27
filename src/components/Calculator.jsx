@@ -3,17 +3,28 @@ import { useState } from 'react'
 
 const Calculator = () => {
     const [result, setResult] = useState(0)
-    const [topResult, setTopResult] = useState(0)
     const [accumulator, setAccumulator] = useState(0)
+    const [log, setLog] = useState("")
     const [operator, setOperator] = useState("")
 
     const num = (e) => {
         let numButton = e.target.name
 
-        if(result === 0) {
+        console.log(operator)
+
+        if(result === 0 && operator === '') {
             setResult(numButton)
-        } else {
+            setLog(numButton)
+        } else if (result === 0 && operator) {
+            setResult(numButton)
+            setLog(log + numButton)           
+        } else if (operator) {
             setResult(result+numButton)
+            setLog(log + numButton)   
+        } else {
+            console.log(typeof log)
+            setResult(result+numButton)
+            setLog(result+numButton)
         }
     }
 
@@ -22,17 +33,19 @@ const Calculator = () => {
     }
 
     const mathOp = (e) => {
-        let opButton = e.target.name
+        const opButton = e.target.name
 
         setOperator(opButton)
         setAccumulator(result)
         setResult(0)
+        setLog(log + opButton)
     }
 
     const clear = () => {
         setResult(0)
-        setTopResult(0)
+        setLog("")
         setAccumulator(0)
+        setOperator("")
     }
 
     const bs = () => {
@@ -42,24 +55,25 @@ const Calculator = () => {
     const calculate = () => {
         if (operator === '+'){
             setResult(parseFloat(accumulator) + parseFloat(result))
-            setTopResult(parseFloat(accumulator) + parseFloat(result))
+            setLog(accumulator + result)
+                
         } else if (operator === '-') {
             setResult(parseFloat(accumulator) - parseFloat(result))
-            setTopResult(parseFloat(accumulator) - parseFloat(result))
+            setLog(accumulator - result)
         } else if (operator === '*') {
             setResult(parseFloat(accumulator) * parseFloat(result))
-            setTopResult(parseFloat(accumulator) * parseFloat(result))
+            setLog(accumulator * result)
         } else if (operator === '/') {
             setResult(parseFloat(accumulator) / parseFloat(result))
-            setTopResult(parseFloat(accumulator) / parseFloat(result))
+            setLog(accumulator / result)
         }
     }
 
     return (
         <div className="calculator">
             <div className="display">
-                <div className="top-result">
-                    <span>{topResult}</span>
+                <div className="log">
+                    <span>{log}</span>
                 </div>
                 <div className="result">
                     <span>{result}</span>
