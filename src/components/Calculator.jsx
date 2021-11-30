@@ -6,23 +6,22 @@ const Calculator = () => {
     const [accumulator, setAccumulator] = useState(0)
     const [log, setLog] = useState("")
     const [operator, setOperator] = useState("")
+    const [calcCheck, setCalcCheck] = useState(false)
 
     const num = (e) => {
         let numButton = e.target.name
 
         if(result === 0 && operator === '') {
             setResult(numButton)
-            setLog(numButton)
         } else if (result === 0 && operator) {
+            setResult(numButton)     
+        } else if (calcCheck) {
             setResult(numButton)
-            setLog(log + numButton)           
+            setCalcCheck(false)      
         } else if (operator) {
             setResult(result+numButton)
-            setLog(log + numButton)   
         } else {
-            console.log(typeof log)
             setResult(result+numButton)
-            setLog(result+numButton)
         }
     }
 
@@ -33,37 +32,58 @@ const Calculator = () => {
     const mathOp = (e) => {
         const opButton = e.target.name
 
+        if(operator !== '') {
+            calculate()
+        } else {
+
         setOperator(opButton)
-        setAccumulator(result)
+        setAccumulator(parseFloat(accumulator+result))
         setResult(0)
-        setLog(log + opButton)
+        }
     }
 
     const clear = () => {
         setResult(0)
-        setLog("")
         setAccumulator(0)
         setOperator("")
+        setCalcCheck(false)
+    }
+
+    const point = (e) => {
+        const opButton = e.target.name
+
+        if(result === 0 || (result).toString().includes('.')) {
+        } else {
+            setResult(result+opButton)
+        } 
     }
 
     const bs = () => {
+        if(result <= 9) {
+            setResult(0)
+        } else {
         setResult(result.toString().slice(0, -1))
+        }
     }
 
     const calculate = () => {
         if (operator === '+'){
-            setResult(parseFloat(accumulator) + parseFloat(result))
-            setLog(parseFloat(accumulator) + parseFloat(result))    
+            setCalcCheck(true)
+            setResult(parseFloat(accumulator) + parseFloat(result))  
+            setAccumulator(parseFloat(accumulator) + parseFloat(result))
         } else if (operator === '-') {
+            setCalcCheck(true)
             setResult(parseFloat(accumulator) - parseFloat(result))
-            setLog(parseFloat(accumulator) - parseFloat(result))
+            setAccumulator(parseFloat(accumulator) - parseFloat(result))
         } else if (operator === '*') {
+            setCalcCheck(true)
             setResult(parseFloat(accumulator) * parseFloat(result))
-            setLog(parseFloat(accumulator) * parseFloat(result))
+            setAccumulator(parseFloat(accumulator) * parseFloat(result))
         } else if (operator === '/') {
+            setCalcCheck(true)
             setResult(parseFloat(accumulator) / parseFloat(result))
-            setLog(parseFloat(accumulator) / parseFloat(result))
-        }
+            setAccumulator(parseFloat(accumulator) / parseFloat(result))
+        }       
     }
 
     return (
@@ -95,7 +115,7 @@ const Calculator = () => {
                 <button name="3" onClick={num}>3</button>
                 <button name="-" onClick={mathOp}>-</button>
                 <button name="0" className="spaced" onClick={num}>0</button>
-                <button name="." onClick={num}>.</button>
+                <button name="." onClick={point}>.</button>
                 <button name="+" onClick={mathOp}>+</button>
             </div>
         </div>
