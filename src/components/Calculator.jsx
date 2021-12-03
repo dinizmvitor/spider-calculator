@@ -4,8 +4,7 @@ import { useState } from 'react'
 const Calculator = () => {
     const [result, setResult] = useState(0)
     const [accumulator, setAccumulator] = useState(0)
-    const [log, setLog] = useState("")
-    const [operator, setOperator] = useState("")
+    const [operator, setOperator] = useState('')
     const [calcCheck, setCalcCheck] = useState(false)
 
     const num = (e) => {
@@ -90,7 +89,7 @@ const Calculator = () => {
         <div className="calculator">
             <div className="display">
                 <div className="log">
-                    <span>{log}</span>
+                    <span></span>
                 </div>
                 <div className="result">
                     <span>{result}</span>
